@@ -48,7 +48,7 @@ import jodroid.d3obj.D3ItemLite;
 import jodroid.d3obj.D3Obj;
 import jodroid.d3obj.D3Profile;
 import jodroid.d3obj.D3ProfileLite;
-import jodroid.d3obj.D3Skill;
+import jodroid.d3obj.ID3Skill;
 import jopc.d3calc.D3ContextDesktop;
 import android.util.Log;
 import d3api.D3Url;
@@ -73,8 +73,8 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 	private JList<D3ItemLite> listItems;
 	private DefaultListModel<D3ItemLite> modelItems;
 	
-	private JList<D3Skill> listSkills;
-	private DefaultListModel<D3Skill> modelSkills;
+	private JList<ID3Skill> listSkills;
+	private DefaultListModel<ID3Skill> modelSkills;
 	
 	private int popupIndex;
 
@@ -88,6 +88,8 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 	private D3Profile currentProfile;
 	private D3Hero currentHero;
 	private int itemCount;
+	
+	private boolean toggleTest;
 
 	private String [] battlehosts = { "eu.battle.net", "us.battle.net" };
 
@@ -132,7 +134,7 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 		cp.add(btTest);
 		btTest.addActionListener(this);
 
-		lblImg = new JLabel("Icon");
+		lblImg = new JLabel("°");
 		layout.putConstraint(SpringLayout.EAST, lblImg, -10, SpringLayout.EAST, cp);
 		layout.putConstraint(SpringLayout.NORTH, lblImg, 10, SpringLayout.SOUTH, btTest);
 		cp.add(lblImg);
@@ -206,9 +208,14 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == btTest) {
-//			D3Icon icon = cache.getItemIcon(D3Url.itemIconLarge2Url("amulet05_demonhunter_male"));
-			D3Icon icon = cache.getItemIcon(D3Url.itemIconLarge2Url("unique_mojo_011_104_witchdoctor_female"));
-			lblImg.setIcon(new ImageIcon(icon.icon.image));
+			if (toggleTest) {
+				lblImg.setIcon(null);
+			} else {
+//				D3Icon icon = cache.getItemIcon(D3Url.itemIconLarge2Url("amulet05_demonhunter_male"));
+				D3Icon icon = cache.getItemIcon(D3Url.itemIconLarge2Url("unique_mojo_011_104_witchdoctor_female"));
+				lblImg.setIcon(new ImageIcon(icon.icon.image));
+			}
+			toggleTest = !toggleTest;
 		}
 		if (ae.getSource() == txtTag) {
 			listProfiles.clearSelection();
@@ -435,12 +442,18 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 	}
 	
 	private Component createHeroSkills(D3Hero hero) {
-		modelSkills = new DefaultListModel<D3Skill>();
-		for (D3Skill element : hero.skills.active)
+		modelSkills = new DefaultListModel<ID3Skill>();
+		for (ID3Skill element : hero.skills.active) {
 			modelSkills.addElement(element);
-		for (D3Skill element : hero.skills.passive)
+			updateSkillIcon(element);
+		}
+		for (ID3Skill element : hero.skills.passive) {
 			modelSkills.addElement(element);
-		listSkills = new JList<D3Skill>(modelSkills);
+			updateSkillIcon(element);
+		}
+		listSkills = new JList<ID3Skill>(modelSkills);
+		listSkills.setCellRenderer(new D3SkillRenderer());
+		listSkills.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		return listSkills;
 	}
 	
@@ -467,7 +480,7 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 				}
 			});
 		} else {
-			if (((D3Item)temp).iconLarge == null) {
+			if (((D3Item)temp).iconSmall == null) {
 				updateIcon(index);
 			}
 		}
@@ -482,6 +495,14 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 				D3Icon icon = cache.getItemIcon(D3Url.itemIconSmall2Url(item.icon));
 				item.iconSmall = icon;
 			}
+		}
+	}
+	
+	private void updateSkillIcon(final ID3Skill skill) {
+		if (skill.getSkill() == null) return;
+		if (skill.getSkill().iconSmall == null) {
+			D3Icon icon = cache.getItemIcon(D3Url.skillIconSmall2Url(skill.getSkill().icon));
+			skill.getSkill().iconSmall = icon;
 		}
 	}
 }

@@ -67,6 +67,10 @@ public class Resources {
 			return "secondary";
 		case R.string.passive:
 			return "passive";
+		case R.string.title_active_skill:
+			return "Active skill";
+		case R.string.title_passive_skill:
+			return "Passive Skill";
 		}
 		return "";
 	}
