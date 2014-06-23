@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import jodroid.d3calc.R;
+import jodroid.d3obj.D3IconImpl;
 import jodroid.d3obj.D3Obj;
 import jodroid.d3obj.D3Rune;
 import jodroid.d3obj.D3SkillActive;
@@ -185,7 +186,8 @@ ListCellRenderer<ID3Skill> {
 		setPreferredSize(new Dimension(100, height));
 
 		if (value.getSkill().iconSmall != null) {
-			lblIcon.setIcon(new ImageIcon(value.getSkill().iconSmall.icon.image));
+			D3IconImpl icon = (D3IconImpl)value.getSkill().iconSmall;
+			lblIcon.setIcon(new ImageIcon(icon.icon.image));
 		}
 
 		if (isSelected) {

@@ -42,12 +42,16 @@ import jodroid.d3calc.cache.D3Cache;
 import jodroid.d3calc.cache.D3CacheDesktop;
 import jodroid.d3obj.D3Hero;
 import jodroid.d3obj.D3HeroLite;
-import jodroid.d3obj.D3Icon;
+import jodroid.d3obj.D3HeroLiteDesktop;
+import jodroid.d3obj.D3IconImpl;
 import jodroid.d3obj.D3Item;
 import jodroid.d3obj.D3ItemLite;
+import jodroid.d3obj.D3Items;
+import jodroid.d3obj.D3ItemsDesktop;
 import jodroid.d3obj.D3Obj;
 import jodroid.d3obj.D3Profile;
 import jodroid.d3obj.D3ProfileLite;
+import jodroid.d3obj.ID3Icon;
 import jodroid.d3obj.ID3Skill;
 import jopc.d3calc.D3ContextDesktop;
 import android.util.Log;
@@ -195,6 +199,8 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 
 		D3Cache.getInstance().setDelegate(new D3CacheDesktop());
 		D3Obj.setContext(new D3ContextDesktop());
+		D3HeroLite.setDelegate(new D3HeroLiteDesktop());
+		D3Items.setDelegate(new D3ItemsDesktop());
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -211,8 +217,8 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 			if (toggleTest) {
 				lblImg.setIcon(null);
 			} else {
-//				D3Icon icon = cache.getItemIcon(D3Url.itemIconLarge2Url("amulet05_demonhunter_male"));
-				D3Icon icon = cache.getItemIcon(D3Url.itemIconLarge2Url("unique_mojo_011_104_witchdoctor_female"));
+//				ID3Icon icon = cache.getItemIcon(D3Url.itemIconLarge2Url("amulet05_demonhunter_male"));
+				D3IconImpl icon = (D3IconImpl)cache.getItemIcon(D3Url.itemIconLarge2Url("unique_mojo_011_104_witchdoctor_female"));
 				lblImg.setIcon(new ImageIcon(icon.icon.image));
 			}
 			toggleTest = !toggleTest;
@@ -492,7 +498,7 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 		if (temp instanceof D3Item) {
 			D3Item item = (D3Item)temp;
 			if (item.iconSmall == null) {
-				D3Icon icon = cache.getItemIcon(D3Url.itemIconSmall2Url(item.icon));
+				ID3Icon icon = cache.getItemIcon(D3Url.itemIconSmall2Url(item.icon));
 				item.iconSmall = icon;
 			}
 		}
@@ -501,7 +507,7 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 	private void updateSkillIcon(final ID3Skill skill) {
 		if (skill.getSkill() == null) return;
 		if (skill.getSkill().iconSmall == null) {
-			D3Icon icon = cache.getItemIcon(D3Url.skillIconSmall2Url(skill.getSkill().icon));
+			ID3Icon icon = cache.getItemIcon(D3Url.skillIconSmall2Url(skill.getSkill().icon));
 			skill.getSkill().iconSmall = icon;
 		}
 	}

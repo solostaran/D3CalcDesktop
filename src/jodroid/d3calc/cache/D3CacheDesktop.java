@@ -23,12 +23,13 @@ import javax.imageio.ImageIO;
 
 import jodroid.d3calc.D3Prefs;
 import jodroid.d3obj.D3Hero;
-import jodroid.d3obj.D3Icon;
+import jodroid.d3obj.D3IconImpl;
 import jodroid.d3obj.D3Item;
 import jodroid.d3obj.D3Obj;
 import jodroid.d3obj.D3ObjFactory;
 import jodroid.d3obj.D3Profile;
 import jodroid.d3obj.D3ProfileLite;
+import jodroid.d3obj.ID3Icon;
 import jopc.d3calc.D3ContextDesktop;
 import jopc.d3calc.gui.D3Profiles;
 import us.monoid.json.JSONException;
@@ -79,7 +80,7 @@ public class D3CacheDesktop implements ID3Cache {
 	}
 
 	@Override
-	public D3Icon getItemIcon(String url) {
+	public ID3Icon getItemIcon(String url) {
 		int index = url.indexOf("d3/");
 		File fileimage = new File(getBaseDirectory(), url.substring(index+3));
 		Bitmap bm = null;
@@ -136,7 +137,7 @@ public class D3CacheDesktop implements ID3Cache {
 		}
 		// Android version
 		//		bm = BitmapFactory.decodeFile(fileimage);
-		return new D3Icon(bm);
+		return new D3IconImpl(bm);
 	}
 
 	@Override

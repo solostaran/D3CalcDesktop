@@ -6,12 +6,12 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import jodroid.d3calc.D3Prefs;
 import jodroid.d3calc.cache.AsyncObjectHandler;
 import jodroid.d3calc.cache.D3Cache;
 import jodroid.d3calc.cache.D3CacheDesktop;
-import jodroid.d3obj.D3Icon;
+import jodroid.d3obj.D3IconImpl;
 import jodroid.d3obj.D3Profile;
-import jodroid.d3calc.D3Prefs;
 
 import org.junit.After;
 import org.junit.Before;
@@ -32,11 +32,11 @@ public class D3CacheDesktopTest {
 
 	@Test
 	public void testGetItemIcon() {
-		D3Icon icon = cache.getItemIcon("http://us.media.blizzard.com/d3/icons/items/large/amulet05_demonhunter_male.png");
+		D3IconImpl icon = (D3IconImpl)cache.getItemIcon("http://us.media.blizzard.com/d3/icons/items/large/amulet05_demonhunter_male.png");
 		assertNotNull(icon);
 		assertEquals(64, icon.icon.image.getWidth());
 		assertEquals(64, icon.icon.image.getHeight());
-		icon = cache.getItemIcon("http://us.media.blizzard.com/d3/icons/plop.png");
+		icon = (D3IconImpl)cache.getItemIcon("http://us.media.blizzard.com/d3/icons/plop.png");
 		Object ret = (icon == null ? new Object() : null);
 		assertNotNull("Maybe file 'plop.png' is created !", ret);
 		File fileimage = new File(cache.getBaseDirectory(), "plop.png");
