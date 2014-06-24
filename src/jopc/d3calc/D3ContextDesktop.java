@@ -3,7 +3,7 @@ package jopc.d3calc;
 import java.text.DateFormat;
 import java.util.Date;
 
-import jodroid.d3calc.D3ContextInt;
+import jodroid.d3calc.ID3Context;
 import jodroid.d3calc.R;
 import android.content.Context;
 
@@ -12,7 +12,7 @@ import android.content.Context;
  * @author JRD
  *
  */
-public class D3ContextDesktop implements D3ContextInt {
+public class D3ContextDesktop implements ID3Context {
 	
 	transient protected Context context;
 	

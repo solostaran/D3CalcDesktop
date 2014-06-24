@@ -21,6 +21,11 @@ import jodroid.d3obj.D3ItemAttribute;
 import jodroid.d3obj.D3ItemLite;
 import jodroid.d3obj.D3Obj;
 
+
+/**
+ * Unused.
+ * @author JRD
+ */
 @SuppressWarnings("serial")
 public class D3ItemRenderer2 extends JPanel implements
 		ListCellRenderer<D3ItemLite> {

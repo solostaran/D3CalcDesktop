@@ -23,7 +23,7 @@ import javax.imageio.ImageIO;
 
 import jodroid.d3calc.D3Prefs;
 import jodroid.d3obj.D3Hero;
-import jodroid.d3obj.D3IconImpl;
+import jodroid.d3obj.D3IconDesktop;
 import jodroid.d3obj.D3Item;
 import jodroid.d3obj.D3Obj;
 import jodroid.d3obj.D3ObjFactory;
@@ -137,7 +137,7 @@ public class D3CacheDesktop implements ID3Cache {
 		}
 		// Android version
 		//		bm = BitmapFactory.decodeFile(fileimage);
-		return new D3IconImpl(bm);
+		return new D3IconDesktop(bm);
 	}
 
 	@Override

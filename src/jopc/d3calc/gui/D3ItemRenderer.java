@@ -18,7 +18,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import jodroid.d3calc.R;
-import jodroid.d3obj.D3IconImpl;
+import jodroid.d3obj.D3IconDesktop;
 import jodroid.d3obj.D3Item;
 import jodroid.d3obj.D3ItemAttribute;
 import jodroid.d3obj.D3ItemLite;
@@ -121,7 +121,7 @@ public class D3ItemRenderer extends JPanel implements
 					txtAttributes.append("\n  "+i.text);
 			}
 			if (item.iconSmall != null) {
-				D3IconImpl icon = (D3IconImpl)item.iconSmall;
+				D3IconDesktop icon = (D3IconDesktop)item.iconSmall;
 				lblIcon.setIcon(new ImageIcon(icon.icon.image));
 			}
 			setPreferredSize(new Dimension(100, 40+15*(item.attributes.NbAttributes()+3)));

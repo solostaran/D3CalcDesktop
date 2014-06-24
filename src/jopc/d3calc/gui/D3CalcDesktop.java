@@ -43,7 +43,7 @@ import jodroid.d3calc.cache.D3CacheDesktop;
 import jodroid.d3obj.D3Hero;
 import jodroid.d3obj.D3HeroLite;
 import jodroid.d3obj.D3HeroLiteDesktop;
-import jodroid.d3obj.D3IconImpl;
+import jodroid.d3obj.D3IconDesktop;
 import jodroid.d3obj.D3Item;
 import jodroid.d3obj.D3ItemLite;
 import jodroid.d3obj.D3Items;
@@ -218,7 +218,7 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 				lblImg.setIcon(null);
 			} else {
 //				ID3Icon icon = cache.getItemIcon(D3Url.itemIconLarge2Url("amulet05_demonhunter_male"));
-				D3IconImpl icon = (D3IconImpl)cache.getItemIcon(D3Url.itemIconLarge2Url("unique_mojo_011_104_witchdoctor_female"));
+				D3IconDesktop icon = (D3IconDesktop)cache.getItemIcon(D3Url.itemIconLarge2Url("unique_mojo_011_104_witchdoctor_female"));
 				lblImg.setIcon(new ImageIcon(icon.icon.image));
 			}
 			toggleTest = !toggleTest;
