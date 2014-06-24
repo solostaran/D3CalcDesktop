@@ -22,6 +22,7 @@ import java.util.Date;
 import javax.imageio.ImageIO;
 
 import jodroid.d3calc.D3Prefs;
+import jodroid.d3calc.Log;
 import jodroid.d3obj.D3Hero;
 import jodroid.d3obj.D3IconDesktop;
 import jodroid.d3obj.D3Item;
@@ -37,7 +38,6 @@ import us.monoid.json.JSONObject;
 import us.monoid.web.JSONResource;
 import us.monoid.web.Resty;
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;

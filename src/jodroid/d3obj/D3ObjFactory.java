@@ -4,10 +4,11 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+import jodroid.d3calc.Log;
+
 import us.monoid.json.JSONArray;
 import us.monoid.json.JSONException;
 import us.monoid.json.JSONObject;
-import android.util.Log;
 
 /**
  * Build D3Obj objects through a JSONObject and reflection.

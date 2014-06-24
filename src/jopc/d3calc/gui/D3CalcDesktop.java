@@ -36,6 +36,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import jodroid.d3calc.D3Prefs;
+import jodroid.d3calc.Log;
+import jodroid.d3calc.LogDesktop;
 import jodroid.d3calc.R;
 import jodroid.d3calc.cache.AsyncObjectHandler;
 import jodroid.d3calc.cache.D3Cache;
@@ -54,7 +56,6 @@ import jodroid.d3obj.D3ProfileLite;
 import jodroid.d3obj.ID3Icon;
 import jodroid.d3obj.ID3Skill;
 import jopc.d3calc.D3ContextDesktop;
-import android.util.Log;
 import d3api.D3Url;
 
 @SuppressWarnings("serial")
@@ -197,6 +198,7 @@ public class D3CalcDesktop extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 
+		Log.setLog(new LogDesktop());
 		D3Cache.getInstance().setDelegate(new D3CacheDesktop());
 		D3Obj.setContext(new D3ContextDesktop());
 		D3HeroLite.setDelegate(new D3HeroLiteDesktop());
